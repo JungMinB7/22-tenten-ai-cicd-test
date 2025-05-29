@@ -31,6 +31,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
+#Cloud Run Health Check 경로
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 # === [수정] 서버 시작 시 ModelLoader를 FastAPI state에 싱글턴으로 등록 ===
 # 서버 실행 모드(LLM_MODE)는 CLI 인자에서 받아오므로, 아래는 임시 기본값
 llm_mode = os.environ.get("LLM_MODE", "colab")
