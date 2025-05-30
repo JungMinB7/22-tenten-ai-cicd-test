@@ -70,7 +70,9 @@ class ModelLoader:
     def get_response(self, messages, trace, start_time=None, prompt=None, name="vllm-inference"):
         if self.mode == "colab":
             # Ngrok(Colab) API로 요청
-            load_dotenv(override=True)
+            # load_dotenv(override=True)
+
+            load_dotenv(dotenv_path="/secrets/env")
             base_url = os.getenv('MODEL_NGROK_URL')
 
             self.data["messages"] = messages
