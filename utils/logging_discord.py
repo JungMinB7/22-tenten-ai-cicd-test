@@ -6,7 +6,8 @@ import re
 import os
 from dotenv import load_dotenv
 
-load_dotenv(override=True)
+# load_dotenv(override=True)
+load_dotenv(dotenv_path="/secrets/env") #GCP Secret Mangager 환경변수 부르기 
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 
 class DiscordWebhookHandler(logging.Handler):
