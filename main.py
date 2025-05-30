@@ -28,8 +28,8 @@ def parse_args():
 app = FastAPI(
     title="텐텐 AI API",
     description="kakaobase 플랫폼을 위한 AI 기능",
-    version="1.0.0"
-    root_path="/gcp-ai" #nginx 리버스 프록시 경로 
+    version="1.0.0",
+    root_path="/gcp-ai"
 )
 
 #Cloud Run Health Check 경로
@@ -50,7 +50,7 @@ origins = [
     "http://www.kakaobase.com",
     "https://www.kakaobase.com",
     "http://localhost:8080",
-    "http://localhost:3000"
+    "http://localhost:3000",
     "https://kakaobase-ai-cicd-test-376344114561.asia-northeast3.run.app"
 ]
 
