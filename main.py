@@ -85,7 +85,7 @@ if __name__ == "__main__":
     if os.environ["LLM_MODE"] in ["gcp", "api"]:
         reload_flag = False
 
-    print(f"실행 모드: {args.mode}, reload : {reload_flag}")
+    print(f"실행 모드: {llm_mode}, reload : {reload_flag}")
     
     port = int(os.environ.get("PORT", 8000))
 
