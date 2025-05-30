@@ -29,6 +29,7 @@ app = FastAPI(
     title="텐텐 AI API",
     description="kakaobase 플랫폼을 위한 AI 기능",
     version="1.0.0"
+    root_path="/gcp-ai" #nginx 리버스 프록시 경로 
 )
 
 #Cloud Run Health Check 경로
