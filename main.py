@@ -13,16 +13,16 @@ from api.endpoints.discord_webhook_router import router as discord_router ## for
 from utils.logger_discord import setup_logging
 from utils.exception_handler import register_exception_handlers
 
-# # CLI 인자 파싱 함수 추가
-# def parse_args():
-#     parser = argparse.ArgumentParser(description="텐텐 GPU 사용 모드 선택")
-#     parser.add_argument(
-#         "--mode",
-#         choices=["colab", "gcp", "api"],
-#         default="colab",
-#         help="LLM inference 모드 선택 (colab: Ngrok/Colab, gcp: GCP 서버 직접 추론, api: gemini 2.0 flash api 사용)"
-#     )
-#     return parser.parse_args()
+# CLI 인자 파싱 함수 추가
+def parse_args():
+    parser = argparse.ArgumentParser(description="텐텐 GPU 사용 모드 선택")
+    parser.add_argument(
+        "--mode",
+        choices=["colab", "gcp", "api"],
+        default="colab",
+        help="LLM inference 모드 선택 (colab: Ngrok/Colab, gcp: GCP 서버 직접 추론, api: gemini 2.0 flash api 사용)"
+    )
+    return parser.parse_args()
 
 # FastAPI 애플리케이션 초기화
 app = FastAPI(
@@ -50,7 +50,7 @@ origins = [
     "https://www.kakaobase.com",
     "http://localhost:8080",
     "http://localhost:3000",
-    "https://kakaobase-ai-cicd-test-376344114561.asia-northeast3.run.app"
+    "https://kakaobase-ai-cicd-test-37634411456f1.asia-northeast3.run.app"
 ]
 
 # CORS 미들웨어 설정
@@ -74,24 +74,24 @@ app.include_router(bot_recomment_router, prefix="/recomments/bot", tags=["bot-re
 app.include_router(bot_chat_router, prefix="/chats/bot", tags=["bot-chats"])
 app.include_router(discord_router, prefix="/error_log", tags=["discord-webhook"]) # Discord Webhook router
 
-# # 서버 구동을 위한 설정
-# if __name__ == "__main__":
-#     args = parse_args()
-#     os.environ["LLM_MODE"] = args.mode
-#     llm_mode = os.environ.get("LLM_MODE", "colab")
-#     app.state.model = ModelLoader(mode=llm_mode) # Dockerfile에서 uvicorn을 사용하기 위해.
+# 서버 구동을 위한 설정
+if __name__ == "__main__":
+    args = parse_args()
+    os.environ["LLM_MODE"] = args.mode
+    llm_mode = os.environ.get("LLM_MODE", "colab")
+    app.state.model = ModelLoader(mode=llm_mode) # Dockerfile에서 uvicorn을 사용하기 위해.
 
-#     reload_flag = True
-#     if os.environ["LLM_MODE"] in ["gcp", "api"]:
-#         reload_flag = False
+    reload_flag = True
+    if os.environ["LLM_MODE"] in ["gcp", "api"]:
+        reload_flag = False
 
-#     print(f"실행 모드: {llm_mode}, reload : {reload_flag}")
+    print(f"실행 모드: {llm_mode}, reload : {reload_flag}")
     
-#     port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get("PORT", 8000))
 
-#     uvicorn.run(
-#         "main:app",
-#         host="0.0.0.0",
-#         port=port,
-#         reload=reload_flag   # 개발 환경에서만 사용
-#     )
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=port,
+        reload=reload_flag   # 개발 환경에서만 사용
+    )
