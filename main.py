@@ -84,10 +84,11 @@ if __name__ == "__main__":
 
     print(f"실행 모드: {args.mode}, reload : {reload_flag}")
     
+    port = int(os.environ.get("PORT", 8000))
 
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=8000,
+        port=port,
         reload=reload_flag   # 개발 환경에서만 사용
     )
