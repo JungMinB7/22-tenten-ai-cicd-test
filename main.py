@@ -51,6 +51,7 @@ origins = [
     "https://www.kakaobase.com",
     "http://localhost:8080",
     "http://localhost:3000"
+    "https://kakaobase-ai-cicd-test-376344114561.asia-northeast3.run.app"
 ]
 
 # CORS 미들웨어 설정
