@@ -8,7 +8,9 @@ from pathlib import Path
 
 class BotPostsPrompt:
     def __init__(self):
-        load_dotenv(override=True)
+        # load_dotenv(override=True)
+       
+        load_dotenv(dotenv_path="/secrets/env") #GCP Secret Mangager 환경변수 부르기 
         
         # 소셜봇 페르소나 불러오기 시작
         persona_path_str = os.getenv("PERSONA_PATH")

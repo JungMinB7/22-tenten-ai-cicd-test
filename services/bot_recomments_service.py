@@ -19,7 +19,9 @@ class BotRecommentsService:
         print(f"MODE : {self.mode}")
         
         # Langfuse 초기화
-        load_dotenv(override=True)
+        # load_dotenv(override=True)
+        load_dotenv(dotenv_path="/secrets/env") #GCP Secret Mangager 환경변수 부르기 
+        
         self.langfuse = Langfuse(
             secret_key=os.getenv('LANGFUSE_SECRET_KEY'),
             public_key=os.getenv('LANGFUSE_PUBLIC_KEY'),

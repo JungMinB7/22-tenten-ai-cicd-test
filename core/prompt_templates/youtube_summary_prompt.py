@@ -9,7 +9,10 @@ class YoutubeSummaryPrompt:
             mode : colab(default) / gcp
         """
 
-        load_dotenv(override=True)
+        # load_dotenv(override=True)
+
+        load_dotenv(dotenv_path="/secrets/env") #GCP Secret Mangager 환경변수 부르기 
+        
 
         # Langfuse 초기화
         self.langfuse = Langfuse(

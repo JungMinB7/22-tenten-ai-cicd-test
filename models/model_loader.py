@@ -57,7 +57,10 @@ class ModelLoader:
                 stop=self.stop 
             )
         if self.mode == "api":
-            load_dotenv(override=True)
+            # load_dotenv(override=True)
+
+            load_dotenv(dotenv_path="/secrets/env") #GCP Secret Mangager 환경변수 부르기 
+
             self.client = OpenAI(
                 api_key=os.getenv("GEMINI_API_KEY"),
                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
