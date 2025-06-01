@@ -78,8 +78,6 @@ app.include_router(discord_router, prefix="/error_log", tags=["discord-webhook"]
 if __name__ == "__main__":
     args = parse_args()
     os.environ["LLM_MODE"] = args.mode
-    llm_mode = os.environ.get("LLM_MODE", "colab")
-    app.state.model = ModelLoader(mode=llm_mode) # Dockerfile에서 uvicorn을 사용하기 위해.
 
     reload_flag = True
     if os.environ["LLM_MODE"] in ["gcp", "api"]:
